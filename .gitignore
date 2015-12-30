@@ -1,2 +1,7 @@
 .idea
+
 app/__pycache__/
+
+example_code/
+
+app/*.db
