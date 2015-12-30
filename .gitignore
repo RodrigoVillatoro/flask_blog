@@ -1,6 +1,6 @@
 .idea
 
-app/__pycache__/
+__pycache__
 
 example_code/
 
