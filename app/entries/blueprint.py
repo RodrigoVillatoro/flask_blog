@@ -6,20 +6,20 @@ from models import Entry, Tag
 entries = Blueprint('entries', __name__, template_folder='templates')
 
 
-def entry_list(template, query, **context):
+def entry_list(template_name, query, **context):
     search = request.args.get('q')
     if search:
         query = query.filter(
             (Entry.body.contains(search)) | (Entry.title.contains(search))
         )
-    return object_list(template, query, **context)
+    return object_list(template_name, query, **context)
 
 
 @entries.route('/')
 def index():
     entries = Entry.query.order_by(Entry.created_timestamp.desc())
-    return entry_list(template='entries/index.html',
-                       query=entries)
+    return entry_list(template_name='entries/index.html',
+                      query=entries)
 
 
 @entries.route('/tags/')
@@ -33,7 +33,7 @@ def tag_index():
 def tag_detail(slug):
     tag = Tag.query.filter(Tag.slug == slug).first_or_404()
     entries = tag.entries.order_by(Entry.created_timestamp.desc())
-    return tag_detail(template='entries/tag_detail.html',
+    return entry_list(template_name='entries/tag_detail.html',
                        query=entries,
                        tag=tag)
 
