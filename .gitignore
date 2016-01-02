@@ -8,4 +8,4 @@ app/*.db
 
 *.pyc
 
-config_secret.py
+app/config_secret.py
