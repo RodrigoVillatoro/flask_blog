@@ -62,3 +62,7 @@ class EntryForm(wtforms.Form):
         self.populate_obj(entry)
         entry.generate_slug()
         return entry
+
+
+class ImageForm(wtforms.Form):
+    file = wtforms.FileField('Image file')

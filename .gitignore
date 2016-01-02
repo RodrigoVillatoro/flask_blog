@@ -9,3 +9,5 @@ app/*.db
 *.pyc
 
 app/config_secret.py
+
+app/static/images/*
