@@ -7,3 +7,5 @@ example_code/
 app/*.db
 
 *.pyc
+
+config_secret.py

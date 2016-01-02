@@ -1,7 +1,10 @@
 import os
 
+from config_secret import *
+
 
 class Configuration:
     APPLICATION_DIR = os.path.dirname(os.path.realpath(__file__))
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///%s/blog.db' % APPLICATION_DIR
+    SECRET_KEY = YOUR_SECRET_KEY
+    SQLALCHEMY_DATABASE_URI = YOUR_DATABASE % APPLICATION_DIR
