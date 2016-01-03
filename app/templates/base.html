@@ -8,7 +8,7 @@
     {% block extra_styles %}{% endblock %}
 
     <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/bootsrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     {% block extra_scripts %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
@@ -27,6 +27,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('homepage') }}">Home</a></li>
                     <li><a href="{{ url_for('entries.index') }}">Blog</a></li>
+                    <li><a href="{{ url_for('login') }}">Log in</a></li>
                     {% block extra_nav %}{% endblock %}
                 </ul>
             </div>
