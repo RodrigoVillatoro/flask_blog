@@ -39,6 +39,14 @@ class Entry(db.Model):
         backref=db.backref('entries', lazy='dynamic')
     )
 
+    @property
+    def tag_list(self):
+        return ', '.join(tag.name for tag in self.tags)
+
+    @property
+    def tease(self):
+        return self.body[:100]
+
     def __init__(self, *args, **kwargs):
         super(Entry, self).__init__(*args, **kwargs)
         self.generate_slug()
