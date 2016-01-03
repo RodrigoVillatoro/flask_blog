@@ -31,6 +31,7 @@ class Entry(db.Model):
         default=datetime.datetime.now,
         onupdate=datetime.datetime.now,
     )
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     tags = db.relationship(
         'Tag',
@@ -72,6 +73,7 @@ class User(db.Model):
     slug = db.Column(db.String(64), unique=True)
     active = db.Column(db.Boolean, default=True)
     created_timestamp = db.Column(db.DateTime, default=datetime.datetime.now)
+    entries = db.relation('Entry', backref='author', lazy='dynamic')
 
     def __init__(self, *args, **kwargs):
         super(User, self).__init__(*args, **kwargs)
@@ -89,7 +91,7 @@ class User(db.Model):
     def get_id(self):
         return self.id
 
-    def is_authenticaded(self):
+    def is_authenticated(self):
         return True
 
     def is_active(self):
