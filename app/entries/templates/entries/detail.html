@@ -21,4 +21,15 @@
 
 {% block content %}
     {{ entry.body }}
+    <h4 id="comment-form">Submit a comment</h4>
+    {% include 'includes/comment_form.html' %}
+{% endblock %}
+
+{% block extra_scripts %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/comments.js') }}"></script>
+    <script type="text/javascript">
+        $(function() {
+            Comments.bindHandler()
+        });
+    </script>
 {% endblock %}

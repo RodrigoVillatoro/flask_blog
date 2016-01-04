@@ -1,13 +1,14 @@
 import os
 
-from flask import Blueprint, flash, g, redirect, render_template, request, url_for
+from flask import (Blueprint, flash, g, redirect, render_template, request,
+                   url_for)
 from flask.ext.login import login_required
 from werkzeug.utils import secure_filename
 
 from app import app, db
 from helpers import object_list
 from models import Entry, Tag
-from entries.forms import EntryForm, ImageForm
+from entries.forms import CommentForm, EntryForm, ImageForm
 
 entries = Blueprint('entries', __name__, template_folder='templates')
 
@@ -107,7 +108,8 @@ def image_upload():
 @entries.route('/<slug>/')
 def detail(slug):
     entry = get_entry_or_404(slug)
-    return render_template('entries/detail.html', entry=entry)
+    form = CommentForm(data={'entry_id': entry.id})
+    return render_template('entries/detail.html', entry=entry, form=form)
 
 
 @entries.route('/<slug>/edit/', methods=['GET', 'POST'])

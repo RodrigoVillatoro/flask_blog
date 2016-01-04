@@ -1,5 +1,5 @@
 import wtforms
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Email, Length, Optional, URL
 
 from models import Entry, Tag
 
@@ -66,3 +66,29 @@ class EntryForm(wtforms.Form):
 
 class ImageForm(wtforms.Form):
     file = wtforms.FileField('Image file')
+
+
+class CommentForm(wtforms.Form):
+    name = wtforms.StringField('Name', validators=[DataRequired()])
+    email = wtforms.StringField('Email', validators=[DataRequired(), Email()])
+    url = wtforms.StringField('URL', validators=[Optional(), URL()])
+    body = wtforms.TextAreaField(
+        'Comment',
+        validators=[DataRequired(), Length(min=10, max=3000)]
+    )
+    entry_id = wtforms.HiddenField(validators=[DataRequired()])
+
+    def validate(self):
+        if not super(CommentForm, self).validate():
+            return False
+
+        # Make sure that entry_id maps to public Entry
+        entry = Entry.query.filter(
+            (Entry.status == Entry.STATUS_PUBLIC) &
+            (Entry.id == self.entry_id.data)
+        ).first()
+
+        if not entry:
+            return False
+
+        return True
