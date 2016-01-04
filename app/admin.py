@@ -1,4 +1,5 @@
 from flask.ext.admin import Admin
+from flask.ext.admin.contrib.fileadmin import FileAdmin
 from flask.ext.admin.contrib.sqla import ModelView
 from wtforms.fields import PasswordField, SelectField
 
@@ -80,8 +81,14 @@ class UserModelView(SlugModelView):
         )
 
 
+class BlogFileAdmin(FileAdmin):
+    pass
+
+
 admin = Admin(app, 'Blog Admin')
 admin.add_view(EntryModelView(Entry, db.session))
 admin.add_view(SlugModelView(Tag, db.session))
 admin.add_view(UserModelView(User, db.session))
-
+admin.add_view(
+    BlogFileAdmin(app.config['STATIC_DIR'], '/static/', name='Static Files')
+)
