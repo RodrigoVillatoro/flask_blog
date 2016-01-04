@@ -84,6 +84,9 @@ class User(db.Model):
     entries = db.relationship('Entry', backref='author', lazy='dynamic')
     admin = db.Column(db.Boolean, default=False)
 
+    def is_admin(self):
+        return self.admin
+
     def __init__(self, *args, **kwargs):
         super(User, self).__init__(*args, **kwargs)
         self.generate_slug()

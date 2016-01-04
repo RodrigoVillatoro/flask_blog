@@ -1,4 +1,5 @@
-from flask.ext.admin import Admin
+from flask import g, request, redirect, url_for
+from flask.ext.admin import Admin, AdminIndexView, expose
 from flask.ext.admin.contrib.fileadmin import FileAdmin
 from flask.ext.admin.contrib.sqla import ModelView
 from wtforms.fields import PasswordField, SelectField
@@ -7,7 +8,12 @@ from app import app, db
 from models import Entry, Tag, User, entry_tags
 
 
-class BaseModelView(ModelView):
+class AdminAuthentication:
+    def is_accessible(self):
+        return g.user.is_authenticated and g.user.is_admin()
+
+
+class BaseModelView(AdminAuthentication, ModelView):
     pass
 
 
@@ -17,6 +23,14 @@ class SlugModelView(BaseModelView):
         return super(SlugModelView, self).on_model_change(
             form, model, is_created
         )
+
+
+class IndexView(AdminIndexView):
+    @expose('/')
+    def index(self):
+        if not (g.user.is_authenticated and g.user.is_admin()):
+            return redirect(url_for('login', next=request.path))
+        return self.render('admin/index.html')
 
 
 class EntryModelView(SlugModelView):
@@ -64,11 +78,11 @@ class EntryModelView(SlugModelView):
 
 
 class UserModelView(SlugModelView):
-    column_filters = ['email', 'name', 'active']
-    column_list = ['email', 'name', 'active', 'created_timestamp']
+    column_filters = ['email', 'name', 'active', 'admin']
+    column_list = ['email', 'name', 'active', 'created_timestamp', 'admin']
     column_searchable_list = ['email', 'name']
 
-    form_columns = ['email', 'password', 'name', 'active']
+    form_columns = ['email', 'password', 'name', 'active', 'admin']
     form_extra_fields = {
         'password': PasswordField('New password'),
     }
@@ -81,11 +95,11 @@ class UserModelView(SlugModelView):
         )
 
 
-class BlogFileAdmin(FileAdmin):
+class BlogFileAdmin(AdminAuthentication, FileAdmin):
     pass
 
 
-admin = Admin(app, 'Blog Admin')
+admin = Admin(app, 'Blog Admin', index_view=IndexView())
 admin.add_view(EntryModelView(Entry, db.session))
 admin.add_view(SlugModelView(Tag, db.session))
 admin.add_view(UserModelView(User, db.session))
