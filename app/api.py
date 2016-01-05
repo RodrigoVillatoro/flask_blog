@@ -16,6 +16,10 @@ def post_preprocessor(data, **kwargs):
         )
 
 
-api.create_api(Comment, methods=['GET', 'POST'], preprocessors={
-    'POST': [post_preprocessor]
-})
+api.create_api(
+    Comment,
+    include_columns=['id', 'name', 'url', 'body', 'created_timestamp'],
+    include_methods=['gravatar'],
+    methods=['GET', 'POST'],
+    preprocessors={'POST': [post_preprocessor]}
+)

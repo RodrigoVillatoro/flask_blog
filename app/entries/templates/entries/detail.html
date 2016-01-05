@@ -29,7 +29,8 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/comments.js') }}"></script>
     <script type="text/javascript">
         $(function() {
-            Comments.bindHandler()
+            Comments.load({{ entry.id }});
+            Comments.bindHandler();
         });
     </script>
 {% endblock %}
