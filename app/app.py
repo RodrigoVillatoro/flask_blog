@@ -6,8 +6,9 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_restless import APIManager
 from flask_sqlalchemy import SQLAlchemy
+from logging.handlers import RotatingFileHandler
 
-from config import Configuration
+from config import Configuration, LOG_LEVEL
 
 
 app = Flask(__name__)
@@ -28,3 +29,7 @@ def _before_request():
     g.user = current_user
 
 bcrypt = Bcrypt()
+
+file_handler = RotatingFileHandler('blog.log')
+app.logger.addHandler(file_handler)
+app.logger.setLevel(LOG_LEVEL)

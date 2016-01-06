@@ -11,3 +11,5 @@ app/*.db
 app/config_secret.py
 
 app/static/images/*
+
+*.log
