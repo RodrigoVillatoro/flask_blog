@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block content %}
-    {{ entry.body }}
+    {{ entry.body | markdown }}
     <h4 id="comment-form">Submit a comment</h4>
     {% include 'includes/comment_form.html' %}
 {% endblock %}

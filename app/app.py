@@ -2,6 +2,7 @@ from flask import Flask, g
 from flask.ext.login import LoginManager, current_user
 
 from flask.ext.bcrypt import Bcrypt
+from flask.ext.markdown import Markdown
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_restless import APIManager
@@ -13,6 +14,8 @@ from config import Configuration, LOG_LEVEL
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
+Markdown(app)
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 api = APIManager(app, flask_sqlalchemy_db=db)
