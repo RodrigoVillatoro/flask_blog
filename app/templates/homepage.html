@@ -3,18 +3,5 @@
 {% block content_title %}Welcome to my blog{% endblock %}
 
 {% block content %}
-    {% if number %}
-        <p>Your number is {{ number|int }}</p>
-        <ul>
-            {% for i in range(number|int + 1) %}
-                {% if i is divisibleby 2 %}
-                    <li>{{ i }}</li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No number specified.</p>
-    {% endif %}
-
-    <p>Your name is {{ name|default('unknown', True) }}.</p>
+    <p>Visit my blog: <a href={{ url_for('entries.index') }}>Enter here!</a></p>
 {% endblock %}

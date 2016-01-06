@@ -28,3 +28,10 @@ class LoginForm(wtforms.Form):
             return False
 
         return True
+
+
+class ResetPasswordForm(wtforms.Form):
+    email = wtforms.StringField(
+        'Email',
+        validators=[validators.DataRequired()]
+    )

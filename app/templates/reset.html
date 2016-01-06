@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% from 'macros/form_field.html' import form_field %}
+
+{% block title %}Reset Password{% endblock %}
+
+{% block content_title %}Reset Password{% endblock %}
+
+{% block content %}
+    <form action="{{ url_for('reset_password') }}" class="form form-horizontal" method="post">
+        {{ form_field(form.email) }}
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button type="submit" class="btn btn-primary">Send email</button>
+                <a class="btn btn-link" href="{{ url_for('login') }}">Cancel</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}
