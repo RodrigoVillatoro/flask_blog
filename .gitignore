@@ -4,12 +4,12 @@ __pycache__
 
 example_code/
 
-app/*.db
+blog_app/*.db
 
 *.pyc
 
-app/config_secret.py
+blog_app/config_secret.py
 
-app/static/images/*
+blog_app/static/images/*
 
 *.log
