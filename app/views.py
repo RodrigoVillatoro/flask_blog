@@ -1,5 +1,5 @@
 from flask import flash, redirect, render_template, request, url_for
-from flask.ext.login import login_user, logout_user
+from flask_login import login_user, logout_user
 
 import tasks
 

@@ -1,7 +1,7 @@
 from flask import Flask, g
-from flask.ext.login import LoginManager, current_user
+from flask_login import LoginManager, current_user
 
-from flask.ext.bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_restless import APIManager

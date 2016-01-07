@@ -1,7 +1,7 @@
 from flask import g, request, redirect, url_for
-from flask.ext.admin import Admin, AdminIndexView, expose
-from flask.ext.admin.contrib.fileadmin import FileAdmin
-from flask.ext.admin.contrib.sqla import ModelView
+from flask_admin import Admin, AdminIndexView, expose
+from flask_admin.contrib.fileadmin import FileAdmin
+from flask_admin.contrib.sqla import ModelView
 from wtforms.fields import PasswordField, SelectField
 
 from app import app, db
