@@ -2,7 +2,7 @@ from urllib.parse import urljoin
 from flask import Blueprint, request, url_for
 from werkzeug.contrib.atom import AtomFeed
 
-from app import app
+from my_app import app
 from models import Entry
 
 feed = Blueprint('feed', __name__)

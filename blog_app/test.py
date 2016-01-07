@@ -3,7 +3,7 @@ import unittest
 
 from flask import request
 
-from app import db
+from my_app import db
 from config_secret import *
 from main import app
 from models import Comment

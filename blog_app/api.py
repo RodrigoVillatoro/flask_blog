@@ -1,6 +1,6 @@
 from flask_restless import ProcessingException
 
-from app import api
+from my_app import api
 from entries.forms import CommentForm
 from models import Comment
 

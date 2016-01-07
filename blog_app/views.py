@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user
 
 import tasks
 
-from app import app, db, login_manager
+from my_app import app, db, login_manager
 from forms import LoginForm, ResetPasswordForm
 from models import User
 

@@ -1,4 +1,4 @@
-from app import app, db
+from my_app import app, db
 import admin
 import api
 import models

@@ -6,7 +6,7 @@ from flask import (Blueprint, Markup, flash, g, redirect, render_template,
 from flask.ext.login import login_required
 from werkzeug.utils import secure_filename
 
-from app import app, db
+from my_app import app, db
 from helpers import object_list
 from models import Entry, Tag
 from entries.forms import CommentForm, EntryForm, ImageForm

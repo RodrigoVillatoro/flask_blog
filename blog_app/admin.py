@@ -4,7 +4,7 @@ from flask_admin.contrib.fileadmin import FileAdmin
 from flask_admin.contrib.sqla import ModelView
 from wtforms.fields import PasswordField, SelectField
 
-from app import app, db
+from my_app import app, db
 from models import Entry, Tag, User, entry_tags
 
 

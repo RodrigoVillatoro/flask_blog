@@ -1,4 +1,4 @@
-from app import manager
+from my_app import manager
 from main import *
 
 

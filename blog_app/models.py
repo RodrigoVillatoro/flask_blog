@@ -3,7 +3,7 @@ import hashlib
 import re
 import urllib.parse
 
-from app import bcrypt, db, login_manager
+from my_app import bcrypt, db, login_manager
 
 
 def slugify(title):
